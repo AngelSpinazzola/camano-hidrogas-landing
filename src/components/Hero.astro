@@ -1,5 +1,5 @@
 ---
-const whatsappNumber = '541123921192';
+const whatsappNumber = '541132964682';
 const whatsappMsg = encodeURIComponent('Hola Camaño, los contacto desde su página web. Quisiera consultar por un servicio.');
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 ---
@@ -22,7 +22,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   <div class="absolute inset-0 bg-gray-700/70"></div>
 
   <!-- Contenido -->
-  <div class="relative z-10 container mx-auto px-6 py-24 text-center max-w-2xl">
+  <div class="relative z-10 container mx-auto px-6 pt-10 pb-24 text-center max-w-2xl">
 
     <img
       src="/logo.png"
@@ -31,19 +31,30 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       decoding="async"
     />
 
-    <p class="text-[#4ab8cc] text-sm font-semibold uppercase tracking-widest mb-3">
+    <p class="text-yellow-200 text-lg font-semibold uppercase tracking-widest mb-3">
       San Martín de los Andes, Neuquén
     </p>
 
     <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-5">
-      Empresa de plomería e hidrogas
+      Soluciones integrales en gas y plomería
     </h1>
 
     <p class="text-white/90 text-lg leading-relaxed mb-10 max-w-md mx-auto">
-      Más de 10 años resolviendo instalaciones de gas, plomería y destapaciones en la región con <span class="text-[#4ab8cc]">profesionalismo y garantía.</span>
+      Más de 10 años resolviendo instalaciones de gas, plomería y destapaciones en la región con profesionalismo y garantía.</span>
     </p>
 
+
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a
+        href="#servicios"
+        class="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-medium px-7 py-3.5 rounded-xl text-base transition-all duration-200 hover:bg-white/10"
+      >
+        Ver servicios
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+
       <a
         href={whatsappUrl}
         target="_blank"
@@ -56,31 +67,21 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
         </svg>
         Consultar por WhatsApp
       </a>
-
-      <a
-        href="#servicios"
-        class="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-medium px-7 py-3.5 rounded-xl text-base transition-all duration-200 hover:bg-white/10"
-      >
-        Ver servicios
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-        </svg>
-      </a>
     </div>
 
     <!-- Indicadores -->
     <div class="mt-14 grid grid-cols-3 gap-4 max-w-sm mx-auto border-t border-white/20 pt-8">
       <div>
-        <p class="text-2xl font-bold text-white">+10</p>
-        <p class="text-xs text-white/50 mt-0.5">Años de experiencia</p>
+        <p class="text-3xl font-bold text-yellow-200">+10</p>
+        <p class="text-xs text-white mt-0.5">Años de experiencia</p>
       </div>
-      <div class="border-x border-white/20">
-        <p class="text-2xl font-bold text-white">+500</p>
-        <p class="text-xs text-white/50 mt-0.5">Trabajos realizados</p>
+      <div class="border-x border-white/20 px-4">
+        <p class="text-3xl font-bold text-yellow-200">+500</p>
+        <p class="text-xs text-white mt-0.5">Trabajos realizados</p>
       </div>
       <div>
-        <p class="text-2xl font-bold text-white">24hs</p>
-        <p class="text-xs text-white/50 mt-0.5">Respuesta rápida</p>
+        <p class="text-3xl font-bold text-yellow-200">24hs</p>
+        <p class="text-xs text-white mt-0.5">Respuesta rápida</p>
       </div>
     </div>
   </div>
