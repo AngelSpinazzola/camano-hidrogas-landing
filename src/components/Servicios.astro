@@ -1,0 +1,82 @@
+---
+const servicios = [
+  {
+    title: 'Instalación de Gas',
+    desc: 'Instalaciones y ampliaciones de gas natural y envasado. Habilitaciones y certificaciones.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+    </svg>`,
+  },
+  {
+    title: 'Plomería General',
+    desc: 'Reparación y montaje de cañerías, sanitarios, griferías y todo tipo de instalaciones sanitarias.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z" />
+    </svg>`,
+  },
+  {
+    title: 'Destapaciones',
+    desc: 'Destapado de cañerías, piletas, inodoros y desagües con equipamiento profesional.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.5 3-4.5 5.25-4.5 8.25a4.5 4.5 0 0 0 9 0c0-3-3-5.25-4.5-8.25Z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 12v5.25M8.25 19.5h7.5" />
+    </svg>`,
+  },
+  {
+    title: 'Reparaciones Urgentes',
+    desc: 'Atención rápida para pérdidas de agua y gas, roturas y emergencias en el hogar o comercio.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+    </svg>`,
+  },
+  {
+    title: 'Gasistas Matriculado',
+    desc: 'Habilitados para emitir certificados de instalaciones de gas requeridos por el municipio.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+    </svg>`,
+  },
+  {
+    title: 'Termotanques y Calefones',
+    desc: 'Instalación, mantenimiento y reparación de termotanques, calefones y calefacción central.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m0 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0-9a1.5 1.5 0 0 1 1.5 1.5v7.25A4.5 4.5 0 1 1 7.5 18V4.5A1.5 1.5 0 0 1 9 3h6Z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9h-4.5" />
+    </svg>`,
+  },
+];
+---
+
+<section id="servicios" class="py-20 bg-white">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <!-- Encabezado -->
+    <div class="text-center mb-14">
+      <span class="text-[#1b5d72] font-semibold text-sm uppercase tracking-widest">Quiénes somos</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2 mb-4">
+        Servicio profesional en San Martín de los Andes
+      </h2>
+      <p class="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
+        Somos una empresa con más de 10 años de experiencia en plomería e instalaciones de gas en la región del Neuquén. Trabajamos con responsabilidad, puntualidad y garantía en cada obra.
+      </p>
+    </div>
+
+    <!-- Grid de servicios -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {servicios.map((s) => (
+        <div class="group p-6 rounded-2xl border border-gray-100 hover:border-[#4ab8cc]/40 hover:shadow-lg hover:shadow-[#4ab8cc]/10 transition-all duration-300 bg-white">
+          <div
+            class="w-11 h-11 text-[#1b5d72] mb-4"
+            aria-hidden="true"
+            set:html={s.icon}
+          />
+          <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#1b5d72] transition-colors">
+            {s.title}
+          </h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

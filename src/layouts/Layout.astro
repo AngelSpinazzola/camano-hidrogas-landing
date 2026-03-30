@@ -1,0 +1,129 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Camaño Plomería y Gas | San Martín de los Andes, Neuquén',
+  description = 'Plomero y gasista matriculado en San Martín de los Andes. Instalaciones de gas, plomería, destapaciones y más. Servicio profesional en Neuquén. ☎ Contactanos por WhatsApp.',
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+const siteUrl = 'https://camano.com.ar';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+
+const schemaLocalBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: 'Camaño Plomería y Gas',
+  description: 'Plomero y gasista matriculado en San Martín de los Andes, Neuquén. Instalaciones de gas, plomería, destapaciones y reparaciones.',
+  url: siteUrl,
+  telephone: '+542972000000',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'San Martín de los Andes',
+    addressRegion: 'Neuquén',
+    addressCountry: 'AR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -40.1572,
+    longitude: -71.3537,
+  },
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'San Martín de los Andes',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Neuquén',
+    },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de Plomería y Gas',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Instalación de gas' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Plomería general' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Destapaciones' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Reparación de cañerías' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gasista matriculado' } },
+    ],
+  },
+  priceRange: '$$',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday'],
+      opens: '08:00',
+      closes: '13:00',
+    },
+  ],
+  sameAs: [],
+};
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Primario SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Keywords locales -->
+    <meta name="keywords" content="plomero San Martín de los Andes, instalación de gas San Martín de los Andes, plomería Neuquén, gasista matriculado San Martín de los Andes, destapaciones San Martín de los Andes, Camaño plomería" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Camaño Plomería y Gas" />
+
+    <!-- Geo tags -->
+    <meta name="geo.region" content="AR-Q" />
+    <meta name="geo.placename" content="San Martín de los Andes, Neuquén" />
+    <meta name="geo.position" content="-40.1572;-71.3537" />
+    <meta name="ICBM" content="-40.1572, -71.3537" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, siteUrl)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Camaño Plomería y Gas" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, siteUrl)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaLocalBusiness)} />
+  </head>
+  <body class="font-sans text-gray-800 bg-white antialiased [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display">
+    <slot />
+  </body>
+</html>

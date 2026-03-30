@@ -1,0 +1,31 @@
+---
+const links = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#galeria', label: 'Trabajos' },
+  { href: '#resenas', label: 'Reseñas' },
+];
+---
+
+<!-- Navbar solo mobile, fijo arriba -->
+<nav
+  id="mobile-nav"
+  class="fixed top-0 left-0 right-0 z-50 md:hidden bg-white border-b border-gray-200 shadow-sm"
+  aria-label="Navegación principal"
+>
+  <ul class="flex items-center justify-around h-16">
+    {links.map(l => (
+      <li class="flex-1">
+        <a
+          href={l.href}
+          class="flex flex-col items-center justify-center h-full text-gray-500 hover:text-[#1b5d72] text-xs font-medium transition-colors duration-200 gap-0.5"
+        >
+          {l.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<!-- Espaciado para que el footer no quede tapado por la navbar -->
+<div class="md:hidden h-16"></div>
