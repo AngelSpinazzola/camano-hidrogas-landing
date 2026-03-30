@@ -1,5 +1,4 @@
 ---
-// Reemplazar con reseñas reales del cliente (copiar de Google Maps)
 const resenas = [
   {
     nombre: 'María G.',
@@ -38,17 +37,13 @@ const resenas = [
     texto: 'Rápidos, confiables y con precio razonable. Ya los llamé dos veces y siempre quedé conforme. Son los mejores plomeros de la zona.',
   },
 ];
-
-function renderStars(n: number) {
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
-}
 ---
 
-<section id="resenas" class="py-20 bg-white">
+<section id="resenas" class="py-20 bg-gray-50 overflow-hidden">
   <div class="container mx-auto px-6 max-w-6xl">
     <!-- Encabezado -->
-    <div class="text-center mb-14">
-      <span class="text-blue-600 font-semibold text-sm uppercase tracking-widest">Reseñas</span>
+    <div class="text-center mb-12">
+      <span class="text-cyan-800 font-semibold text-sm uppercase tracking-widest">Reseñas</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2 mb-2">
         Lo que dicen nuestros clientes
       </h2>
@@ -58,14 +53,24 @@ function renderStars(n: number) {
         <span class="text-gray-400 text-sm">· Google Reviews</span>
       </div>
     </div>
+  </div>
 
-    <!-- Cards de reseñas -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {resenas.map((r) => (
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow duration-300">
+  <!-- Carrusel infinito -->
+  <div class="relative">
+    <!-- Fade izquierda -->
+    <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+    <!-- Fade derecha -->
+    <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+
+    <div class="flex gap-6 carousel-track">
+      {[...resenas, ...resenas].map((r, i) => (
+        <div
+          class="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+          aria-hidden={i >= resenas.length ? 'true' : 'false'}
+        >
           <!-- Estrellas -->
           <p class="text-yellow-400 text-lg mb-3" aria-label={`${r.estrellas} estrellas`}>
-            {renderStars(r.estrellas)}
+            {'★'.repeat(r.estrellas)}
           </p>
 
           <!-- Texto -->
@@ -74,15 +79,14 @@ function renderStars(n: number) {
           </p>
 
           <!-- Autor -->
-          <div class="flex items-center gap-3 pt-3 border-t border-gray-200">
-            <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm" aria-hidden="true">
+          <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+            <div class="w-9 h-9 rounded-full bg-cyan-50 flex items-center justify-center text-cyan-800 font-bold text-sm" aria-hidden="true">
               {r.nombre.charAt(0)}
             </div>
             <div>
               <p class="font-semibold text-gray-800 text-sm">{r.nombre}</p>
               <p class="text-gray-400 text-xs">{r.fecha}</p>
             </div>
-            <!-- Logo Google -->
             <svg class="ml-auto w-5 h-5 shrink-0" viewBox="0 0 24 24" aria-label="Google" role="img">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -93,20 +97,36 @@ function renderStars(n: number) {
         </div>
       ))}
     </div>
+  </div>
 
-    <!-- CTA hacia Google -->
-    <div class="text-center mt-10">
-      <a
-        href="https://g.page/r/REEMPLAZAR-CON-ID-GOOGLE/review"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors"
-      >
-        Ver todas las reseñas en Google
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-        </svg>
-      </a>
-    </div>
+  <!-- CTA hacia Google -->
+  <div class="text-center mt-10">
+    <a
+      href="https://g.page/r/REEMPLAZAR-CON-ID-GOOGLE/review"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 text-cyan-800 hover:text-cyan-900 font-semibold text-sm transition-colors"
+    >
+      Ver todas las reseñas en Google
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
+    </a>
   </div>
 </section>
+
+<style>
+  .carousel-track {
+    animation: scroll 30s linear infinite;
+    width: max-content;
+  }
+
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
