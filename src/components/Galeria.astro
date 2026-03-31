@@ -1,20 +1,12 @@
 ---
 const fotos = [
   {
-    src: '/images/plomeria-canieria-neuquen.jpeg',
+    src: '/images/plomeria-canieria-neuquen.png',
     alt: 'Trabajo de plomería y cañería en Neuquén — CAMAÑO HIDROGAS',
   },
   {
-    src: '/images/trabajos-gas-hidrogas-camano.jpeg',
+    src: '/images/trabajos-gas-hidrogas-camano.png',
     alt: 'Trabajos de gas e hidrogas — CAMAÑO HIDROGAS',
-  },
-  {
-    src: '/images/reparacion-plomeria-neuquen.jpeg',
-    alt: 'Reparación de plomería en Neuquén — CAMAÑO HIDROGAS',
-  },
-  {
-    src: '/images/obra-gas-camano-hidrogas.jpeg',
-    alt: 'Obra de gas — CAMAÑO HIDROGAS San Martín de los Andes',
   },
   {
     src: '/images/destapacion-plomero-san-martin-andes.jpeg',
@@ -25,63 +17,107 @@ const fotos = [
     alt: 'Servicio de plomería e hidrogas en Neuquén — CAMAÑO HIDROGAS',
   },
 ];
-
-// Reemplazar con IDs reales de videos de YouTube del cliente
-const videos = [
-  {
-    youtubeId: 'MUUrW7xJSw4', // placeholder — reemplazar
-    title: 'Instalación de gas completa en vivienda, San Martín de los Andes',
-  },
-];
 ---
 
 <section id="galeria" class="py-20 bg-gray-50">
   <div class="container mx-auto px-6 max-w-6xl">
     <!-- Encabezado -->
-    <div class="text-center mb-14">
-      <span class="text-cyan-800 font-semibold text-xl uppercase tracking-widest">Trabajos realizados</span>
+    <div class="text-center mb-12">
+      <span class="text-cyan-800 font-semibold text-sm uppercase tracking-widest">Trabajos realizados</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2 mb-4">
         Cada proyecto, una solución a medida
       </h2>
       <p class="text-gray-500 max-w-xl mx-auto">
-        Una muestra de lo que hacemos todos los días. Instalaciones, reparaciones y obras realizadas con dedicación y garantía.
+        Trabajos reales de nuestro equipo. Cada imagen representa un proyecto terminado con responsabilidad, prolijidad y compromiso.
       </p>
     </div>
 
-    <!-- Galería de fotos -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-14">
-      {fotos.map((foto) => (
-        <div class="aspect-square overflow-hidden rounded-2xl bg-gray-200 group cursor-pointer">
-          <img
-            src={foto.src}
-            alt={foto.alt}
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      ))}
-    </div>
-
-    <!-- Videos de YouTube -->
-    {videos.length > 0 && (
-      <div>
-        <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Videos</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {videos.map((video) => (
-            <div class="rounded-2xl overflow-hidden shadow-md aspect-video bg-gray-900">
-              <iframe
-                src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                title={video.title}
-                class="w-full h-full"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              />
-            </div>
-          ))}
-        </div>
+    <!-- Slideshow -->
+    <div class="relative overflow-hidden rounded-2xl shadow-lg" id="slideshow">
+      <!-- Slides -->
+      <div class="flex transition-transform duration-500 ease-in-out" id="slides-track">
+        {fotos.map((foto) => (
+          <div class="min-w-full aspect-video">
+            <img
+              src={foto.src}
+              alt={foto.alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
       </div>
-    )}
+
+      <!-- Overlay degradado inferior -->
+      <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+
+      <!-- Flecha izquierda -->
+      <button
+        id="prev-btn"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200"
+        aria-label="Foto anterior"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+
+      <!-- Flecha derecha -->
+      <button
+        id="next-btn"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200"
+        aria-label="Foto siguiente"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <!-- Indicadores -->
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" id="dots">
+        {fotos.map((_, i) => (
+          <button
+            class={`w-2 h-2 rounded-full transition-all duration-300 dot ${i === 0 ? 'bg-white w-5' : 'bg-white/50'}`}
+            aria-label={`Ir a foto ${i + 1}`}
+            data-index={i}
+          />
+        ))}
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('slides-track') as HTMLElement;
+  const dots = document.querySelectorAll('.dot') as NodeListOf<HTMLButtonElement>;
+  const total = dots.length;
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => {
+      d.classList.toggle('bg-white', i === current);
+      d.classList.toggle('w-5', i === current);
+      d.classList.toggle('bg-white/50', i !== current);
+      d.classList.toggle('w-2', i !== current);
+    });
+  }
+
+  function startTimer() {
+    timer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    startTimer();
+  }
+
+  document.getElementById('next-btn')!.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+  document.getElementById('prev-btn')!.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(Number(d.dataset.index)); resetTimer(); }));
+
+  startTimer();
+</script>
