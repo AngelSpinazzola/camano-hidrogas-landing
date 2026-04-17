@@ -48,8 +48,9 @@ const fotos = [
 ];
 ---
 
-<section id="galeria" class="bg-gray-800 py-20">
+<section id="galeria" class="bg-gray-800 py-20 overflow-hidden">
   <div class="container mx-auto max-w-6xl px-6">
+  <div class="galeria-block">
     <!-- Encabezado -->
     <div class="mb-10">
       <div
@@ -109,6 +110,7 @@ const fotos = [
         ))
       }
     </div>
+  </div><!-- fin galeria-block -->
   </div>
 </section>
 
@@ -141,6 +143,16 @@ const fotos = [
 </div>
 
 <style>
+  .galeria-block {
+    opacity: 0;
+    transform: translateX(-100vw);
+    transition: opacity 2s ease, transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .galeria-block.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   .gallery-card {
     opacity: 0;
     transform: translateY(20px);
@@ -178,6 +190,17 @@ const fotos = [
 </style>
 
 <script>
+  // ── Animación entrada sección ─────────────────────────
+  const galeriaSection = document.getElementById("galeria")!;
+  const galeriaBlock = document.querySelector<HTMLElement>(".galeria-block")!;
+  const sectionObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      galeriaBlock.classList.add("visible");
+      sectionObs.disconnect();
+    }
+  }, { threshold: 0.05 });
+  sectionObs.observe(galeriaSection);
+
   const cards = document.querySelectorAll<HTMLElement>(".gallery-card");
 
   // ── Entrada scroll ────────────────────────────────────
