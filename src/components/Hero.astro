@@ -150,6 +150,12 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
   const DURATION = 3500;
 
+  counters.forEach(el => {
+    const prefix = el.dataset.prefix ?? '';
+    const suffix = el.dataset.suffix ?? '';
+    el.textContent = prefix + '0' + suffix;
+  });
+
   function easeOut(t: number) { return 1 - Math.pow(1 - t, 3); }
 
   function animateCounter(el: HTMLElement) {
