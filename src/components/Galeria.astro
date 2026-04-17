@@ -1,123 +1,213 @@
 ---
 const fotos = [
-  {
-    src: '/images/plomeria-canieria-neuquen.png',
-    alt: 'Trabajo de plomería y cañería en Neuquén — CAMAÑO HIDROGAS',
-  },
-  {
-    src: '/images/trabajos-gas-hidrogas-camano.png',
-    alt: 'Trabajos de gas e hidrogas — CAMAÑO HIDROGAS',
-  },
-  {
-    src: '/images/destapacion-plomero-san-martin-andes.jpeg',
-    alt: 'Destapación de cañería en San Martín de los Andes — CAMAÑO HIDROGAS',
-  },
-  {
-    src: '/images/servicio-plomeria-hidrogas-neuquen.jpeg',
-    alt: 'Servicio de plomería e hidrogas en Neuquén — CAMAÑO HIDROGAS',
-  },
+  { src: '/images/gas-instalacion-1.jpeg',      alt: 'Instalación de gas — CAMAÑO HIDROGAS',                     category: 'gas' },
+  { src: '/images/plomeria-instalacion-1.jpeg', alt: 'Cañería nueva en San Martín de los Andes — CAMAÑO HIDROGAS',category: 'plomeria' },
+  { src: '/images/gas-instalacion-2.jpeg',      alt: 'Instalación de gas en Neuquén — CAMAÑO HIDROGAS',           category: 'gas' },
+  { src: '/images/plomeria-instalacion-2.jpeg', alt: 'Trabajo de plomería en Neuquén — CAMAÑO HIDROGAS',          category: 'plomeria' },
+  { src: '/images/gas-instalacion-3.jpeg',      alt: 'Servicio de gas San Martín de los Andes — CAMAÑO HIDROGAS', category: 'gas' },
+  { src: '/images/plomeria-instalacion-3.jpeg', alt: 'Plomería San Martín de los Andes — CAMAÑO HIDROGAS',        category: 'plomeria' },
+  { src: '/images/gas-instalacion-4.jpeg',      alt: 'Instalación de gas natural — CAMAÑO HIDROGAS',              category: 'gas' },
+  { src: '/images/plomeria-instalacion-4.jpeg', alt: 'Instalación de plomería — CAMAÑO HIDROGAS',                 category: 'plomeria' },
+  { src: '/images/gas-instalacion-5.jpeg',      alt: 'Trabajo de gas Neuquén — CAMAÑO HIDROGAS',                  category: 'gas' },
 ];
 ---
 
-<section id="galeria" class="py-20 bg-slate-800">
+<section id="galeria" class="py-20 bg-gray-800">
   <div class="container mx-auto px-6 max-w-6xl">
+
     <!-- Encabezado -->
-    <div class="text-center mb-12">
-      <span class="text-yellow-200 font-semibold text-lg uppercase tracking-widest">Trabajos realizados</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
-        Cada proyecto, una solución a medida
-      </h2>
-      <p class="text-gray-200 max-w-xl mx-auto">
-        Trabajos reales de nuestro equipo. Cada imagen representa un proyecto terminado con responsabilidad, prolijidad y compromiso.
-      </p>
+    <div class="mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+        <div class="max-w-xl">
+          <span class="text-yellow-200 text-2xl font-semibold uppercase tracking-widest">Trabajos realizados</span>
+          <h2 class="text-3xl sm:text-3xl font-extrabold text-white mt-1 mb-3">
+            Nuestros proyectos
+          </h2>
+          <p class="text-gray-300 text-xl- leading-relaxed">
+            Cada trabajo refleja nuestro compromiso con la calidad y la seguridad.
+          </p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="flex gap-2 shrink-0 sm:self-end">
+          <button class="filter-btn active px-4 py-1.5 text-sm font-medium border-b-2 border-white text-white transition-all duration-200" data-filter="all">Todos</button>
+          <button class="filter-btn px-4 py-1.5 text-sm font-medium border-b-2 border-transparent text-white/50 hover:text-white/80 transition-all duration-200" data-filter="gas">Gas</button>
+          <button class="filter-btn px-4 py-1.5 text-sm font-medium border-b-2 border-transparent text-white/50 hover:text-white/80 transition-all duration-200" data-filter="plomeria">Plomería</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Slideshow -->
-    <div class="relative overflow-hidden rounded-2xl shadow-lg" id="slideshow">
-      <!-- Slides -->
-      <div class="flex transition-transform duration-500 ease-in-out" id="slides-track">
-        {fotos.map((foto) => (
-          <div class="min-w-full aspect-video">
-            <img
-              src={foto.src}
-              alt={foto.alt}
-              class="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        ))}
-      </div>
-
-      <!-- Overlay degradado inferior -->
-      <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
-
-      <!-- Flecha izquierda -->
-      <button
-        id="prev-btn"
-        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200"
-        aria-label="Foto anterior"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-        </svg>
-      </button>
-
-      <!-- Flecha derecha -->
-      <button
-        id="next-btn"
-        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200"
-        aria-label="Foto siguiente"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </button>
-
-      <!-- Indicadores -->
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" id="dots">
-        {fotos.map((_, i) => (
-          <button
-            class={`w-2 h-2 rounded-full transition-all duration-300 dot ${i === 0 ? 'bg-white w-5' : 'bg-white/50'}`}
-            aria-label={`Ir a foto ${i + 1}`}
-            data-index={i}
+    <!-- Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="gallery-grid">
+      {fotos.map((foto, i) => (
+        <div
+          class="gallery-card aspect-square relative overflow-hidden cursor-pointer group"
+          data-category={foto.category}
+          data-src={foto.src}
+          data-alt={foto.alt}
+          style={`--delay:${i * 70}ms`}
+        >
+          <img
+            src={foto.src}
+            alt={foto.alt}
+            class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            loading="lazy"
+            decoding="async"
           />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
+
   </div>
 </section>
 
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm" role="dialog" aria-modal="true">
+  <button id="lb-close" class="absolute top-5 right-5 text-white/50 hover:text-white transition-colors z-10" aria-label="Cerrar">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+  <img id="lb-img" src="" alt="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" />
+</div>
+
+<style>
+  .gallery-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s ease var(--delay, 0ms),
+      transform 0.5s ease var(--delay, 0ms);
+    border-radius: 4px;
+  }
+  .gallery-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .gallery-card.out {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .gallery-card.in {
+    animation: fadeUp 0.35s ease forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+</style>
+
 <script>
-  const track = document.getElementById('slides-track') as HTMLElement;
-  const dots = document.querySelectorAll('.dot') as NodeListOf<HTMLButtonElement>;
-  const total = dots.length;
-  let current = 0;
-  let timer: ReturnType<typeof setInterval>;
+  const cards = document.querySelectorAll<HTMLElement>('.gallery-card');
 
-  function goTo(index: number) {
-    current = (index + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => {
-      d.classList.toggle('bg-white', i === current);
-      d.classList.toggle('w-5', i === current);
-      d.classList.toggle('bg-white/50', i !== current);
-      d.classList.toggle('w-2', i !== current);
+  // ── Entrada scroll ────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        (e.target as HTMLElement).classList.add('visible');
+        observer.unobserve(e.target);
+      }
     });
+  }, { threshold: 0.08 });
+  cards.forEach(c => observer.observe(c));
+
+  // ── Ajusta último item para rellenar la fila ─────────
+  let _adjVisible: HTMLElement[] = Array.from(cards);
+
+  function _doAdjust() {
+    cards.forEach(c => { c.style.gridColumn = ''; c.style.aspectRatio = ''; });
+    const n = _adjVisible.length;
+    if (n === 0) return;
+    const last = _adjVisible[n - 1];
+    if (window.innerWidth >= 640) {
+      const rem = n % 3;
+      if (rem === 2) {
+        // 2 en última fila → último ocupa span 2, mismo alto que las demás (2:1)
+        last.style.gridColumn = 'span 2';
+        last.style.aspectRatio = '2 / 1';
+      } else if (rem === 1) {
+        // 1 en última fila → ocupa las 3 columnas, mismo alto que las demás (3:1)
+        last.style.gridColumn = '1 / -1';
+        last.style.aspectRatio = '3 / 1';
+      }
+    } else {
+      // Mobile: grid de 2 cols — si sobra 1, ocupa el ancho completo
+      if (n % 2 === 1) last.style.gridColumn = '1 / -1';
+    }
   }
 
-  function startTimer() {
-    timer = setInterval(() => goTo(current + 1), 4000);
+  function adjustLast(visible: HTMLElement[]) {
+    _adjVisible = visible;
+    _doAdjust();
   }
 
-  function resetTimer() {
-    clearInterval(timer);
-    startTimer();
+  window.addEventListener('resize', _doAdjust, { passive: true });
+
+  // ── Filtros ───────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach(b => {
+        b.classList.remove('active', 'border-white', 'text-white');
+        b.classList.add('border-transparent', 'text-white/50');
+      });
+      btn.classList.add('active', 'border-white', 'text-white');
+      btn.classList.remove('border-transparent', 'text-white/50');
+
+      const filter = btn.dataset.filter!;
+      const visible: HTMLElement[] = [];
+      let idx = 0;
+
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.remove('in', 'out');
+        void card.offsetWidth;
+        if (match) {
+          card.style.display = '';
+          card.style.setProperty('--delay', `${idx * 60}ms`);
+          card.classList.add('in');
+          card.addEventListener('animationend', () => card.classList.remove('in'), { once: true });
+          visible.push(card);
+          idx++;
+        } else {
+          card.classList.add('out');
+          card.addEventListener('transitionend', () => {
+            if (card.classList.contains('out')) card.style.display = 'none';
+          }, { once: true });
+        }
+      });
+
+      adjustLast(visible);
+    });
+  });
+
+  // Ajuste inicial
+  _doAdjust();
+
+  // ── Lightbox ──────────────────────────────────────────
+  const lightbox = document.getElementById('lightbox')!;
+  const lbImg    = document.getElementById('lb-img') as HTMLImageElement;
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      lbImg.src = card.dataset.src!;
+      lbImg.alt = card.dataset.alt!;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function close() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+    lbImg.src = '';
   }
 
-  document.getElementById('next-btn')!.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
-  document.getElementById('prev-btn')!.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
-  dots.forEach(d => d.addEventListener('click', () => { goTo(Number(d.dataset.index)); resetTimer(); }));
-
-  startTimer();
+  document.getElementById('lb-close')!.addEventListener('click', close);
+  lightbox.addEventListener('click', e => { if (e.target !== lbImg) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 </script>
