@@ -2,9 +2,14 @@
 import { Image } from 'astro:assets';
 const fotos = [
   {
-    src: "/images/gas-instalacion-1.jpeg",
-    alt: "Instalación de gas — CAMAÑO HIDROGAS",
+    src: "/images/gas-instalacion-3.jpeg",
+    alt: "Servicio de gas San Martín de los Andes — CAMAÑO HIDROGAS",
     category: "gas",
+  },
+  {
+    src: "/images/plomeria-instalacion-2.jpeg",
+    alt: "Trabajo de plomería en Neuquén — CAMAÑO HIDROGAS",
+    category: "plomeria",
   },
   {
     src: "/images/plomeria-instalacion-1.jpeg",
@@ -17,19 +22,14 @@ const fotos = [
     category: "gas",
   },
   {
-    src: "/images/plomeria-instalacion-2.jpeg",
-    alt: "Trabajo de plomería en Neuquén — CAMAÑO HIDROGAS",
-    category: "plomeria",
-  },
-  {
-    src: "/images/gas-instalacion-3.jpeg",
-    alt: "Servicio de gas San Martín de los Andes — CAMAÑO HIDROGAS",
-    category: "gas",
-  },
-  {
     src: "/images/plomeria-instalacion-3.jpeg",
     alt: "Plomería San Martín de los Andes — CAMAÑO HIDROGAS",
     category: "plomeria",
+  },
+  {
+    src: "/images/gas-instalacion-1.jpeg",
+    alt: "Instalación de gas — CAMAÑO HIDROGAS",
+    category: "gas",
   },
   {
     src: "/images/gas-instalacion-4.jpeg",
@@ -54,37 +54,34 @@ const fotos = [
   <div class="galeria-block">
     <!-- Encabezado -->
     <div class="mb-10">
-      <div
-        class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between"
-      >
-        <div class="max-w-xl">
-          <span
-            class="text-2xl font-semibold uppercase tracking-widest text-yellow-300"
-            >Trabajos realizados</span
-          >
-          <h2 class="mb-3 mt-1 text-3xl font-extrabold text-white sm:text-3xl">
+      <!-- Eyebrow -->
+      <div class="mb-4 flex items-center gap-3">
+        <span class="h-6 w-1.5 rounded-full bg-yellow-300"></span>
+        <span class="text-lg font-semibold uppercase tracking-[0.2em] text-yellow-300">Trabajos realizados</span>
+      </div>
+
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <!-- Título + descripción -->
+        <div>
+          <h2 class="text-3xl font-extrabold leading-tight text-white sm:text-4xl">
             Nuestros proyectos
           </h2>
-          <p class="text-xl- leading-relaxed text-gray-300">
-            Cada trabajo refleja nuestro compromiso con la calidad y la
-            seguridad.
+          <p class="mt-2 max-w-sm text-sm leading-relaxed text-gray-300">
+            Cada trabajo refleja nuestro compromiso con la calidad y la seguridad.
           </p>
         </div>
 
-        <!-- Filtros -->
-        <div class="flex shrink-0 gap-2 sm:self-end">
+        <!-- Filtros como pills -->
+        <div class="flex gap-2">
           <button
-            class="filter-btn active border-b-2 border-white px-4 py-1.5 text-sm font-medium text-white transition-all duration-200"
-            data-filter="all">Todos</button
-          >
+            class="filter-btn active rounded-full bg-white px-4 py-2 text-xs font-semibold text-zinc-900 transition-all duration-200"
+            data-filter="all">Todos</button>
           <button
-            class="filter-btn border-b-2 border-transparent px-4 py-1.5 text-sm font-medium text-white/50 transition-all duration-200 hover:text-white/80"
-            data-filter="gas">Gas</button
-          >
+            class="filter-btn rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white/50 transition-all duration-200"
+            data-filter="gas">Gas</button>
           <button
-            class="filter-btn border-b-2 border-transparent px-4 py-1.5 text-sm font-medium text-white/50 transition-all duration-200 hover:text-white/80"
-            data-filter="plomeria">Plomería</button
-          >
+            class="filter-btn rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white/50 transition-all duration-200"
+            data-filter="plomeria">Plomería</button>
         </div>
       </div>
     </div>
@@ -260,11 +257,11 @@ const fotos = [
       document
         .querySelectorAll<HTMLButtonElement>(".filter-btn")
         .forEach((b) => {
-          b.classList.remove("active", "border-white", "text-white");
-          b.classList.add("border-transparent", "text-white/50");
+          b.classList.remove("active", "bg-white", "text-zinc-900");
+          b.classList.add("border", "border-white/20", "text-white/50");
         });
-      btn.classList.add("active", "border-white", "text-white");
-      btn.classList.remove("border-transparent", "text-white/50");
+      btn.classList.add("active", "bg-white", "text-zinc-900");
+      btn.classList.remove("border", "border-white/20", "text-white/50");
 
       const filter = btn.dataset.filter!;
       const visible: HTMLElement[] = [];
