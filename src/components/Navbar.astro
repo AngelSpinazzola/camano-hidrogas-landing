@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 const links = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "¿Quiénes somos?" },
@@ -30,7 +32,7 @@ const whatsappUrl = `https://wa.me/541132964682?text=${encodeURIComponent("Hola 
           links.map((l) => (
             <a
               href={l.href}
-              class="nav-link text-base font-semibold text-white transition-colors duration-200 hover:text-yellow-200"
+              class="nav-link text-base font-semibold text-white transition-colors duration-200 hover:text-yellow-300"
             >
               {l.label}
             </a>
@@ -90,7 +92,7 @@ const whatsappUrl = `https://wa.me/541132964682?text=${encodeURIComponent("Hola 
         links.map((l, i) => (
           <a
             href={l.href}
-            class="mobile-link -translate-x-4 border-b border-white/10 py-4 text-lg font-semibold uppercase tracking-widest text-gray-200 opacity-0 transition-colors duration-200 last:border-0 hover:text-yellow-200"
+            class="mobile-link -translate-x-4 border-b border-white/10 py-4 text-lg font-semibold uppercase tracking-widest text-gray-200 opacity-0 transition-colors duration-200 last:border-0 hover:text-yellow-300"
             style={`transition-delay:${i * 60}ms`}
           >
             {l.label}
@@ -136,10 +138,11 @@ const whatsappUrl = `https://wa.me/541132964682?text=${encodeURIComponent("Hola 
         class="mobile-link mt-8 -translate-x-4 opacity-0"
         style={`transition-delay:${(links.length + 1) * 60}ms`}
       >
-        <img
-          src="/logo.png"
+        <Image
+          src={logo}
           alt="CAMAÑO HIDROGAS"
           class="h-24 w-auto brightness-0 invert"
+          loading="eager"
         />
       </div>
     </nav>
@@ -188,14 +191,14 @@ const whatsappUrl = `https://wa.me/541132964682?text=${encodeURIComponent("Hola 
       navbar.classList.add("bg-white", "shadow-md");
       navLinks.forEach((l) => {
         l.classList.replace("text-white", "text-gray-700");
-        l.classList.replace("hover:text-yellow-200", "hover:text-cyan-800");
+        l.classList.replace("hover:text-yellow-300", "hover:text-cyan-800");
       });
       toggle.classList.replace("text-white", "text-gray-700");
     } else {
       navbar.classList.remove("bg-white", "shadow-md");
       navLinks.forEach((l) => {
         l.classList.replace("text-gray-700", "text-white");
-        l.classList.replace("hover:text-cyan-800", "hover:text-yellow-200");
+        l.classList.replace("hover:text-cyan-800", "hover:text-yellow-300");
       });
       toggle.classList.replace("text-gray-700", "text-white");
     }
