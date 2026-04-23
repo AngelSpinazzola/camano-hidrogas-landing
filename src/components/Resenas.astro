@@ -65,7 +65,7 @@ const resenas = [
     <div class="flex gap-6 carousel-track">
       {[...resenas, ...resenas].map((r, i) => (
         <div
-          class="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+          class="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-yellow-300"
           aria-hidden={i >= resenas.length ? 'true' : 'false'}
         >
           <!-- Estrellas -->
